@@ -2,9 +2,12 @@
   "name": "state_channel_react",
   "version": "0.0.1",
   "description": "React bindings for StateChannel - allows for storing React state in a PhoenixChannel",
-  "main": "index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && npx esbuild src/index.jsx --outfile=dist/index.cjs.js --format=cjs && esbuild src/index.jsx --outfile=dist/index.esm.js --format=esm",
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/amberbit/state_channel_react/issues"
   },
-  "homepage": "https://github.com/amberbit/state_channel_react#readme"
+  "homepage": "https://github.com/amberbit/state_channel_react#readme",
+  "devDependencies": {
+    "esbuild": "^0.16.1",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }
