@@ -20,6 +20,7 @@ export const useChannel = topic => {
     return () => {
       joinedChannel.leave();
     };
+    setChannel(joinedChannel)
   }, []);
   
   return [channel];
@@ -35,6 +36,8 @@ export const StateChannelProvider = ({ topic, children }) => {
 
   useEffect(() => {
     if (!channel) return;
+
+    channel.push("_SC_SYNC_", {});
 
     const setStateRef = channel.on("set_state", ({state: state, version: version}) => {
       setAppState(state);
